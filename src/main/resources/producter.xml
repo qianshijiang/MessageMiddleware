@@ -5,27 +5,28 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-4.0.xsd
-       ">
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-    <!--添加注解扫描-->
+    <!--&lt;!&ndash;添加注解扫描&ndash;&gt;
     <context:annotation-config/>
 
-    <!--ActiveMQ为我们提供的ConnectionFactory-->
+    &lt;!&ndash;ActiveMQ为我们提供的ConnectionFactory&ndash;&gt;
     <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
         <property name="brokerURL" value="tcp://127.0.0.1:61616"/>
     </bean>
 
-    <!--Spring jms 为我们提供的连接池-->
+    &lt;!&ndash;Spring jms 为我们提供的连接池&ndash;&gt;
     <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
         <property name="targetConnectionFactory" ref="targetConnectionFactory"/>
     </bean>
 
-    <!--一个队列的目的地,点对点的-->
+    &lt;!&ndash;一个队列的目的地,点对点的&ndash;&gt;
     <bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
         <constructor-arg value="queue"/>
     </bean>
+    -->
 
+    <import resource="common.xml"/>
     <!--配置JmsTemplate,用于发送消息-->
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>

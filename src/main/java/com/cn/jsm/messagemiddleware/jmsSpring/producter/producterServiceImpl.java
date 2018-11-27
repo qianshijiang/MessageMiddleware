@@ -15,7 +15,8 @@ public class producterServiceImpl implements producterService {
 
     @Autowired
     JmsTemplate jmsTemplate;
-    @Resource(name = "queueDestination")
+    //@Resource(name = "queueDestination") //队列模式
+    @Resource(name = "topicDestination") //主题模式
     Destination destination;
     public void sendMessage(String message){
         //使用JmsTemplate发送消息
